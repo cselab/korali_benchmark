@@ -18,6 +18,7 @@ variables,
 #         fork interface is recommended
 interface,
 	fork
+        
 # In an M processor allocation, by default Dakota will configure with
 # a master scheduler with M-1 slave analysis processes.  Overriding
 # this with evaluation_scheduling peer static will avoid this dedicated 
@@ -33,7 +34,7 @@ interface,
 # static case, evaluations are delegated to servers on the fly, making dynamic
 # scheduling the better choice when evaluations may be of varying duration.
 
-#         evaluation_scheduling peer dynamic
+         evaluation_scheduling peer dynamic
 
 	  analysis_driver = 'text_book_driver'
 	    parameters_file = 'params.in'
