@@ -3,11 +3,12 @@
 void model(korali::Sample &k)
 {
   srand(k["Sample Id"]); // seeding randomizer with sample id
-  int base = 1000;
-  int variance = rand()%300;
+  int base = 750;
+  int variance = rand()%500;
+  int waitTime = (base + variance)*1000;
 
   //printf("Random Number: %d\n", variance);
-  usleep(base + variance);
+  usleep(waitTime);
  
   k["F(x)"] = variance; 
 }
@@ -21,7 +22,7 @@ int main(int argc, char *argv[])
   e["Problem"]["Objective Function"] = &model;
 
   e["Solver"]["Type"] = "Optimizer/CMAES";
-  e["Solver"]["Population Size"] = 4096;
+  e["Solver"]["Population Size"] = 512;
   e["Solver"]["Termination Criteria"]["Max Generations"] = 5;
 
   e["Variables"][0]["Name"] = "X";

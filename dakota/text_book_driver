@@ -42,7 +42,7 @@ cp dakota_vars application.in
 # RUN SIMULATION CODE
 # -------------------
 
-echo "$0 running text_book in serial."
+#echo "$0 running text_book in serial."
 text_book application.in application.out
 
 # use sleep command if file I/O timing is a problem
@@ -61,7 +61,7 @@ cp application.out results2dakota
 
 # for demo, append the node name to see on which node this task ran
 # (comment out for actual application)
-uname -n >> results2dakota
+#uname -n >> results2dakota
 
 # When using DAKOTA's fork interface, the application can directly
 # write its output (if in the right format) to results.out.$num
