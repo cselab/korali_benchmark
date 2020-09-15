@@ -9,8 +9,8 @@
 #SBATCH --partition=normal
 #SBATCH --constraint=gpu
 
-baseTime=1.0
-baseSpread=0.0
+minTime=1.0
+imbalanceRatio=0.0
 nNodes=$SLURM_NNODES
 nRanksMaster=$(( $nNodes + 1 )) # Master/Slave type schedulers require a dedicated rank
 nRanksPeer=$nNodes
@@ -26,10 +26,8 @@ echo '----------------------------------------------'
 pushd ../common > /dev/null
 
 cat waitScript.sh.base | sed \
-    -e 's/BASETIME/'$baseTime'/g' \
-    -e 's/BASESPREAD/'$baseSpread'/g' > waitScript.sh
-
-chmod a+x waitScript.sh
+    -e 's/MINTIME/'$minTime'/g' \
+    -e 's/IMBALANCERATIO/'$imbalanceRatio'/g' > waitScript.sh
 
 popd > /dev/null
 

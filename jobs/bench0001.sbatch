@@ -4,12 +4,11 @@
 #SBATCH --time=00:30:00
 #SBATCH --nodes=1
 #SBATCH --ntasks-per-core=1
-#SBATCH --ntasks-per-node=16
 #SBATCH --cpus-per-task=1
 #SBATCH --partition=normal
 #SBATCH --constraint=gpu
 
-meanTime=1.0
+minTime=0.5
 imbalanceRatio=0.0
 nNodes=1
 nGens=5
@@ -23,7 +22,7 @@ echo '----------------------------------------------'
 pushd ../common > /dev/null
 
 cat waitScript.sh.base | sed \
-    -e 's/MEANTIME/'$meanTime'/g' \
+    -e 's/MINTIME/'$minTime'/g' \
     -e 's/IMBALANCERATIO/'$imbalanceRatio'/g' > waitScript.sh
 
 chmod a+x waitScript.sh

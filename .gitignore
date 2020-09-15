@@ -3,6 +3,7 @@ core*
 *.dat
 *.log
 *.err
+*.par
 
 # Prerequisites
 *.d

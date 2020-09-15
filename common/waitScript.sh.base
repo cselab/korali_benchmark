@@ -1,10 +1,20 @@
 #!/bin/sh
 
-meanTime=MEANTIME
 imbalanceRatio=IMBALANCERATIO
+iR=`echo "(1.0 / (${imbalanceRatio} + 0.0000000001) )" | bc -l`
+min=MINTIME
+max=`echo "(($iR + 1) / ($iR - 1)) * $min" | bc -l`
+mean=`echo "($min + $max) / 2.0" | bc -l`
 
-spreadSize=`echo "((1.0 / (1.0 - ${imbalanceRatio})) - 1) * ${meanTime}" | bc -l`
-spread=`echo "(($RANDOM % 100 - 50) / 100) * $spreadSize" | bc -l`
-waitTime=`echo "$meanTime + $spread" | bc -l`
->&2 echo "Waiting for $waitTime seconds..."
-sleep $waitTime
+checkIR=`echo "($max - $mean) / $mean" | bc -l`
+
+#echo "Min: $min"
+#echo "Max: $max"
+#echo "Mean: $mean"
+#echo "Imbalance Ratio: $checkIR"
+
+rnd=$(( $RANDOM % 1000 ))
+val=`echo "$min + ($rnd / 1000) * ($max - $min)" | bc -l`
+
+>&2 echo "Waiting for $val seconds..."
+sleep $val
