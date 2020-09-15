@@ -2,6 +2,7 @@
 core*
 *.dat
 *.log
+*.err
 
 # Prerequisites
 *.d

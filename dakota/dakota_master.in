@@ -5,7 +5,7 @@ environment,
 
 method,
           coliny_ea
-          population_size = 256
+          population_size = 64
           max_iterations = 4
           max_function_evaluations = 100000
           #output = silent
@@ -45,7 +45,7 @@ interface,
 	  analysis_driver = 'text_book_driver'
 	    parameters_file = 'params.in'
 	    results_file = 'results.out'
-	    #file_tag
+	    file_tag
 	    #file_save
 
 responses,
