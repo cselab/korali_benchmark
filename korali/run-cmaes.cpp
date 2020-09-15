@@ -22,7 +22,7 @@ int main(int argc, char *argv[])
   e["Problem"]["Objective Function"] = &model;
 
   e["Solver"]["Type"] = "Optimizer/CMAES";
-  e["Solver"]["Population Size"] = 512;
+  e["Solver"]["Population Size"] = 256;
   e["Solver"]["Termination Criteria"]["Max Generations"] = 5;
 
   e["Variables"][0]["Name"] = "X";

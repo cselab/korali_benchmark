@@ -4,14 +4,18 @@ environment,
 	tabular_data
 
 method,
-	vector_parameter_study
-	  step_vector =	 .1 
-	  num_steps = 511
-          output = silent
+          coliny_ea
+          population_size = 256
+          max_iterations = 4
+          max_function_evaluations = 100000
+          #output = silent
 
 variables,
 	continuous_design = 1
 	  initial_point    1.0
+         lower_bounds -1000.0
+         upper_bounds 1000.0
+         descriptor 'A'
 
 # Case 1 (Massively Serial): Run Dakota in parallel and launch M-1 serial
 #         analysis jobs at once.  Do not specify any evaluation concurrency
@@ -20,7 +24,6 @@ variables,
 interface,
    fork
    asynchronous
-	#fork
         
 # In an M processor allocation, by default Dakota will configure with
 # a master scheduler with M-1 slave analysis processes.  Overriding
@@ -29,7 +32,7 @@ interface,
 # have to complete before the next M are scheduled.  This may be useful if 
 # all evaluations are known to take the same processor time:
 
-#	  evaluation_scheduling peer static
+	  evaluation_scheduling peer dynamic
 
 # Dynamic scheduling may also be specified. In this mode, the first peer will
 # attempt to act as both a master scheduler and an evaluation server. 
@@ -37,7 +40,7 @@ interface,
 # static case, evaluations are delegated to servers on the fly, making dynamic
 # scheduling the better choice when evaluations may be of varying duration.
 
-        evaluation_scheduling peer dynamic
+#         evaluation_scheduling peer master
 
 	  analysis_driver = 'text_book_driver'
 	    parameters_file = 'params.in'

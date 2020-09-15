@@ -30,7 +30,7 @@ engine_cmaes_async_note:
 
 .PHONY: clean
 clean:
-	rm -f engine_cmaes engine_cmaes_async *.o
+	rm -f engine_cmaes engine_cmaes_async core* *.txt *.dat *.log *.o
 
 .PHONY: clear
 clear:

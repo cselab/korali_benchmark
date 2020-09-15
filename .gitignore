@@ -1,4 +1,7 @@
 *.tar.gz
+core*
+*.dat
+*.log
 
 # Prerequisites
 *.d
