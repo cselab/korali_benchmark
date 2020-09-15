@@ -5,9 +5,9 @@ environment,
 
 method,
           coliny_ea
-          population_size = 64
-          max_iterations = 4
-          max_function_evaluations = 100000
+          population_size = POPULATION_SIZE
+          max_iterations = NUM_GENERATIONS 
+          max_function_evaluations = 1000000
           #output = silent
 
 variables,
@@ -32,7 +32,7 @@ interface,
 # have to complete before the next M are scheduled.  This may be useful if 
 # all evaluations are known to take the same processor time:
 
-	  evaluation_scheduling master
+	  evaluation_scheduling SCHEDULING
 
 # Dynamic scheduling may also be specified. In this mode, the first peer will
 # attempt to act as both a master scheduler and an evaluation server. 

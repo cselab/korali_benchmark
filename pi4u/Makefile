@@ -1,7 +1,6 @@
 use_torc?=1
 
-CC=cc
-CFLAGS=-O3 -std=c99 -D_XOPEN_SOURCE=700 -D_BSD_SOURCE
+CFLAGS=-O3 -D_XOPEN_SOURCE=700 -D_BSD_SOURCE
 LDFLAGS=-lm -lpthread
 
 ifeq ($(use_torc),1)

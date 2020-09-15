@@ -28,7 +28,7 @@ restarts 0                    # read by example_restarts.c, remark that restarts
 
 stopMaxFunEvals   1e299     # max number of f-evaluations, 900*(N+3)*(N+3) is default
 # fac*maxFunEvals   1e0     # multiplies stopMaxFunEvals by read number, default is 1
-stopMaxIter       5     # max number of iterations (generations), inf is default
+stopMaxIter       NUM_GENERATIONS     # max number of iterations (generations), inf is default
 
 # stopFitness 1e-9   # stop if function value is smaller than stopFitness
                      # commented == never stop on function value (default)
@@ -68,7 +68,7 @@ maxTimeFractionForEigendecompostion 1  # maximal CPU-time fraction for eigensyst
 ## --- Strategy internal parameter ---
 ##     default values are set in cmaes_readpara_SupplementDefaults()
 ## -- Selection related parameters
-lambda 256        # number of offspring == samplesize
+lambda POPULATION_SIZE        # number of offspring == samplesize
 # mu  
 # weights      log # possible values: log (==default), 
                    #   lin (==linearely decreasing), or equal 

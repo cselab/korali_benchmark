@@ -1,7 +1,12 @@
 #!/bin/sh
+
+#Grabbing sample Id
 sampleId=`cat $1 | tail -n 1 | rev | cut -d ' ' -f 2`
-mean=10000
-rndNumber=$RANDOM
-waitTime=`echo "mean / 1000" | bc -l`
-sleep $waitTime
-echo $rndNumber > $2
+
+#Running wait script
+../common/waitScript.sh
+
+#Producing random result for the optimizer to use
+result=`echo "$RANDOM / 1000" | bc -l` 
+
+echo $result > $2

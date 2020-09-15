@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#SBATCH --job-name="bench0128"
-#SBATCH --output=bench0128.%j.out
+#SBATCH --job-name="bench0016"
+#SBATCH --output=bench0016.%j.out
 #SBATCH --time=00:30:00
-#SBATCH --nodes=128
+#SBATCH --nodes=16
 #SBATCH --ntasks-per-core=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1

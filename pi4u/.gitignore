@@ -1,2 +1,3 @@
 *.txt
 engine_cmaes*
+cmaes_initials.par

@@ -1,0 +1,10 @@
+#!/bin/sh
+
+meanTime=MEANTIME
+imbalanceRatio=IMBALANCERATIO
+
+spreadSize=`echo "((1.0 / (1.0 - ${imbalanceRatio})) - 1) * ${meanTime}" | bc -l`
+spread=`echo "(($RANDOM % 100 - 50) / 100) * $spreadSize" | bc -l`
+waitTime=`echo "$meanTime + $spread" | bc -l`
+>&2 echo "Waiting for $waitTime seconds..."
+sleep $waitTime
