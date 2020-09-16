@@ -42,7 +42,7 @@ command="srun -N $nNodes -n $nRanksMaster ./run-cmaes -n $popSize -g $nGens -e $
 
 echo "Running all $nExperiments experiments together..."
 echo $command
-$command 2>&1 | tail -n 5
+$command 2>&1 | grep "Elapsed Time"
 
 date
 
@@ -60,7 +60,7 @@ command="srun -N $nNodes -n $nRanksMaster ./run-cmaes -n $popSize -g $nGens -e 1
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 5
+ $command 2>&1 | grep "Elapsed Time"
 done
 
 date
@@ -82,7 +82,7 @@ command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- #$command 2>&1 
+ #$command 2>&1 | grep "Total elapsed time"
 done
 date
 
@@ -103,7 +103,7 @@ command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes_async"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 
+ $command 2>&1 | grep "Total elapsed time" 
 done
 date
 
@@ -125,7 +125,7 @@ command="srun -N $nNodes -n $nRanksMaster dakota --input dakota.in"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 2
+ $command 2>&1 | grep "Total wall clock"
 done
 date
 
@@ -147,7 +147,7 @@ command="srun -N $nNodes -n $nRanksPeer dakota --input dakota.in"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 2
+ $command 2>&1 | grep "Total wall clock"
 done
 date
 
@@ -170,7 +170,7 @@ command="srun -N $nNodes -n $nRanksPeer dakota --input dakota.in"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 2
+ $command 2>&1 | grep "Total wall clock"
 done
 date
 
