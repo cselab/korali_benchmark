@@ -82,7 +82,7 @@ command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 20
+ $command 2>&1 
 done
 date
 
@@ -103,7 +103,7 @@ command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes_async"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 20
+ $command 2>&1 
 done
 date
 

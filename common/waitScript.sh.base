@@ -16,5 +16,5 @@ checkIR=`echo "($max - $mean) / $mean" | bc -l`
 rnd=$(( $RANDOM % 1000 ))
 val=`echo "$min + ($rnd / 1000) * ($max - $min)" | bc -l`
 
->&2 echo "Waiting for $val seconds..."
+#>&2 echo "Waiting for $val seconds..."
 sleep $val
