@@ -35,8 +35,6 @@ echo '----------------------------------------------'
 
 pushd ../korali > /dev/null
 
-make clean > /dev/null ; make -j2 > /dev/null 2>&1
-
 date
 command="srun -N $nNodes -n 17 ./run-cmaes -n $popSize -g $nGens -e $nExperiments"
 
@@ -53,8 +51,6 @@ echo 'Testing Korali (Sequential)'
 echo '----------------------------------------------'
 
 pushd ../korali > /dev/null
-
-make clean > /dev/null ; make -j2 > /dev/null 2>&1
 
 date
 command="srun -N $nNodes -n 17 ./run-cmaes -n $popSize -g $nGens -e 1"
@@ -74,8 +70,6 @@ echo 'Testing PI4U (With Job Stealing)'
 echo '----------------------------------------------'
 
 pushd ../pi4u > /dev/null
-
-make clean > /dev/null ; make -j2 > /dev/null 2>&1
 
 cat cmaes_initials.par.base | sed \
     -e 's/POPULATION_SIZE/'$popSize'/g' \
@@ -97,8 +91,6 @@ echo 'Testing PI4U (Witout Job Stealing)'
 echo '----------------------------------------------'
 
 pushd ../pi4u > /dev/null
-
-make clean > /dev/null ; make -j2 > /dev/null 2>&1
 
 cat cmaes_initials.par.base | sed \
     -e 's/POPULATION_SIZE/'$popSize'/g' \

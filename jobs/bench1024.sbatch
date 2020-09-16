@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#SBATCH --job-name="bench0016"
-#SBATCH --output=bench0016.%j.out
-#SBATCH --time=01:00:00
-#SBATCH --nodes=16
+#SBATCH --job-name="bench1024"
+#SBATCH --output=bench1024.%j.out
+#SBATCH --time=01:20:00
+#SBATCH --nodes=1024
 #SBATCH --ntasks-per-core=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
@@ -82,7 +82,7 @@ command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 7
+ $command 2>&1 | tail -n 20
 done
 date
 
@@ -103,7 +103,7 @@ command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes_async"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 7
+ $command 2>&1 | tail -n 20
 done
 date
 

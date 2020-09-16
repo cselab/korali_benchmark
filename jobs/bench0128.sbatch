@@ -1,7 +1,7 @@
 #!/bin/bash -l
 #SBATCH --job-name="bench0128"
 #SBATCH --output=bench0128.%j.out
-#SBATCH --time=00:30:00
+#SBATCH --time=01:00:00
 #SBATCH --nodes=128
 #SBATCH --ntasks-per-core=1
 #SBATCH --ntasks-per-node=1
@@ -9,8 +9,8 @@
 #SBATCH --partition=normal
 #SBATCH --constraint=gpu
 
-baseTime=1.0
-baseSpread=0.0
+minTime=2.0
+imbalanceRatio=0.0
 nNodes=$SLURM_NNODES
 nRanksMaster=$(( $nNodes + 1 )) # Master/Slave type schedulers require a dedicated rank
 nRanksPeer=$nNodes
@@ -26,10 +26,8 @@ echo '----------------------------------------------'
 pushd ../common > /dev/null
 
 cat waitScript.sh.base | sed \
-    -e 's/BASETIME/'$baseTime'/g' \
-    -e 's/BASESPREAD/'$baseSpread'/g' > waitScript.sh
-
-chmod a+x waitScript.sh
+    -e 's/MINTIME/'$minTime'/g' \
+    -e 's/IMBALANCERATIO/'$imbalanceRatio'/g' > waitScript.sh
 
 popd > /dev/null
 
@@ -84,7 +82,7 @@ command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 7
+ $command 2>&1 | tail -n 20
 done
 date
 
@@ -105,7 +103,7 @@ command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes_async"
 for i in $(seq 1 $nExperiments); do
  echo "Running Experiment $i"
  echo $command
- $command 2>&1 | tail -n 7
+ $command 2>&1 | tail -n 20
 done
 date
 
