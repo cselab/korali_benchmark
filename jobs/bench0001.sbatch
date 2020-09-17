@@ -40,7 +40,7 @@ command="srun -N $nNodes -n 17 ./run-cmaes -n $popSize -g $nGens -e $nExperiment
 
 echo "Running all $nExperiments experiments together..."
 echo $command
-$command 2>&1 | grep "Elapsed Time"
+$command 2>&1 | grep "Elapsed Time" | tail -n 1
 
 date
 
@@ -55,9 +55,9 @@ pushd ../korali > /dev/null
 date
 command="srun -N $nNodes -n 17 ./run-cmaes -n $popSize -g $nGens -e 1"
 
+echo "Running Experiment $i"
+echo $command
 for i in $(seq 1 $nExperiments); do
- echo "Running Experiment $i"
- echo $command
  $command 2>&1 | grep "Elapsed Time"
 done
 
@@ -77,9 +77,9 @@ cat cmaes_initials.par.base | sed \
 
 date
 command="srun -N $nNodes -n 16 ./engine_cmaes"
+echo "Running Experiment $i"
+echo $command
 for i in $(seq 1 $nExperiments); do
- echo "Running Experiment $i"
- echo $command
  $command 2>&1 | grep "Total elapsed time"
 done
 date
@@ -98,9 +98,9 @@ cat cmaes_initials.par.base | sed \
 
 date
 command="srun -N $nNodes -n 16 ./engine_cmaes_async"
+echo "Running Experiment $i"
+echo $command
 for i in $(seq 1 $nExperiments); do
- echo "Running Experiment $i"
- echo $command
  $command 2>&1 | grep "Total elapsed time"
 done
 date
@@ -122,10 +122,10 @@ cat dakota.in.base | sed \
 
 date
 command="srun -N $nNodes -n 17 dakota --input dakota.in"
+echo "Running Experiment $i"
+echo $command
 for i in $(seq 1 $nExperiments); do
- echo "Running Experiment $i"
- echo $command
- $command 2>&1 | "Total wall clock"
+ $command 2>&1 | grep "Total wall clock"
 done
 date
 
@@ -146,10 +146,10 @@ cat dakota.in.base | sed \
 
 date
 command="srun -N $nNodes -n 16 dakota --input dakota.in"
+echo "Running Experiment $i"
+echo $command
 for i in $(seq 1 $nExperiments); do
- echo "Running Experiment $i"
- echo $command
- $command 2>&1 | "Total wall clock"
+ $command 2>&1 | grep "Total wall clock"
 done
 date
 
@@ -171,10 +171,10 @@ cat dakota.in.base | sed \
 
 date
 command="srun -N $nNodes -n 16 dakota --input dakota.in"
+echo "Running Experiment $i"
+echo $command
 for i in $(seq 1 $nExperiments); do
- echo "Running Experiment $i"
- echo $command
- $command 2>&1 | "Total wall clock"
+ $command 2>&1 | grep "Total wall clock"
 done
 date
 
