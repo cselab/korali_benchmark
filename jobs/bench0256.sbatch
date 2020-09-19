@@ -2,7 +2,7 @@
 #SBATCH --job-name="bench0256"
 #SBATCH --output=bench0256.%j.out
 #SBATCH --time=01:00:00
-#SBATCH --nodes=512
+#SBATCH --nodes=256
 #SBATCH --ntasks-per-core=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
@@ -68,28 +68,7 @@ date
 popd > /dev/null
 
 echo '----------------------------------------------'
-echo 'Testing PI4U (With Job Stealing)'
-echo '----------------------------------------------'
-
-pushd ../pi4u > /dev/null
-
-cat cmaes_initials.par.base | sed \
-    -e 's/POPULATION_SIZE/'$popSize'/g' \
-    -e 's/NUM_GENERATIONS/'$nGens'/g' > cmaes_initials.par
-
-date
-command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes"
-echo "Running Experiment $i"
-echo $command
-for i in $(seq 1 $nExperiments); do
- $command 2>&1 | grep "Elapsed Time"
-done
-date
-
-popd > /dev/null
-
-echo '----------------------------------------------'
-echo 'Testing PI4U (Witout Job Stealing)'
+echo 'Testing PI4U'
 echo '----------------------------------------------'
 
 pushd ../pi4u > /dev/null
@@ -103,7 +82,7 @@ command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes_async"
 echo "Running Experiment $i"
 echo $command
 for i in $(seq 1 $nExperiments); do
- $command 2>&1 | grep "Elapsed Time"
+ $command 2>&1 | grep "elapsed"
 done
 date
 

@@ -1,8 +1,8 @@
 #!/bin/bash -l
-#SBATCH --job-name="bench1024"
-#SBATCH --output=bench1024.%j.out
-#SBATCH --time=01:20:00
-#SBATCH --nodes=1024
+#SBATCH --job-name="bench0064"
+#SBATCH --output=bench0064.%j.out
+#SBATCH --time=01:00:00
+#SBATCH --nodes=64
 #SBATCH --ntasks-per-core=1
 #SBATCH --ntasks-per-node=1
 #SBATCH --cpus-per-task=1
@@ -68,28 +68,7 @@ date
 popd > /dev/null
 
 echo '----------------------------------------------'
-echo 'Testing PI4U (With Job Stealing)'
-echo '----------------------------------------------'
-
-pushd ../pi4u > /dev/null
-
-cat cmaes_initials.par.base | sed \
-    -e 's/POPULATION_SIZE/'$popSize'/g' \
-    -e 's/NUM_GENERATIONS/'$nGens'/g' > cmaes_initials.par
-
-date
-command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes"
-echo "Running Experiment $i"
-echo $command
-for i in $(seq 1 $nExperiments); do
- #$command 2>&1 | grep "Total elapsed time"
-done
-date
-
-popd > /dev/null
-
-echo '----------------------------------------------'
-echo 'Testing PI4U (Witout Job Stealing)'
+echo 'Testing PI4U'
 echo '----------------------------------------------'
 
 pushd ../pi4u > /dev/null
@@ -125,7 +104,7 @@ command="srun -N $nNodes -n $nRanksMaster dakota --input dakota.in"
 echo "Running Experiment $i"
 echo $command
 for i in $(seq 1 $nExperiments); do
- $command 2>&1 | grep "Total elapsed time"
+ $command 2>&1 | grep "Total wall clock"
 done
 date
 
@@ -147,7 +126,7 @@ command="srun -N $nNodes -n $nRanksPeer dakota --input dakota.in"
 echo "Running Experiment $i"
 echo $command
 for i in $(seq 1 $nExperiments); do
- $command 2>&1 | grep "Total elapsed time"
+ $command 2>&1 | grep "Total wall clock"
 done
 date
 
@@ -170,7 +149,7 @@ command="srun -N $nNodes -n $nRanksPeer dakota --input dakota.in"
 echo "Running Experiment $i"
 echo $command
 for i in $(seq 1 $nExperiments); do
- $command 2>&1 | grep "Total elapsed time"
+ $command 2>&1 | grep "Total wall clock"
 done
 date
 

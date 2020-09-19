@@ -68,28 +68,7 @@ date
 popd > /dev/null
 
 echo '----------------------------------------------'
-echo 'Testing PI4U (With Job Stealing)'
-echo '----------------------------------------------'
-
-pushd ../pi4u > /dev/null
-
-cat cmaes_initials.par.base | sed \
-    -e 's/POPULATION_SIZE/'$popSize'/g' \
-    -e 's/NUM_GENERATIONS/'$nGens'/g' > cmaes_initials.par
-
-date
-command="srun -N $nNodes -n $nRanksPeer ./engine_cmaes"
-echo "Running Experiment $i"
-echo $command
-for i in $(seq 1 $nExperiments); do
- #$command 2>&1 | grep "Total elapsed time"
-done
-date
-
-popd > /dev/null
-
-echo '----------------------------------------------'
-echo 'Testing PI4U (Witout Job Stealing)'
+echo 'Testing PI4U'
 echo '----------------------------------------------'
 
 pushd ../pi4u > /dev/null
