@@ -16,7 +16,7 @@ nRanksMaster=$(( $nNodes + 1 )) # Master/Slave type schedulers require a dedicat
 nRanksPeer=$nNodes
 nGens=5
 dakotaGens=$(( $nGens -1 )) # Dakota starts numbering generations from 0, thus -1
-nExperiments=5
+nExperiments=10
 popSize=$((nNodes * 4))
 
 echo '----------------------------------------------'
